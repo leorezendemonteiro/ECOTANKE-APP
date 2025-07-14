@@ -14,8 +14,7 @@
     "react-dom": "^18.3.1"
   },
   "description": "Projeto web inicial da Ecotanke. Deploy automático no Vercel.",
-  "main": "firebase.js",
-  "keywords": [],
+    "keywords": [],
   "author": "",
   "license": "ISC"
 }
