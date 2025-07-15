@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import '../app/globals.css'
 
 export const metadata = {
   title: 'ECOTANKE',
