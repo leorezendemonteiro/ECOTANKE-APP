@@ -1,4 +1,4 @@
-export default function Home() {
+export default function HomePage() {
   return (
     <div>
       <h1>Bem-vindo ao ECOTANKE</h1>
