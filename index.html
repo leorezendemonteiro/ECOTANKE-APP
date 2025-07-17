@@ -54,6 +54,7 @@
   </style>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="js/firebase-config.js"></script>
   <script src="js/auth-guard.js"></script>
 </head>
@@ -75,9 +76,6 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = 'dashboard/index.html';
-        })
         .catch(error => {
           alert('Erro ao entrar: ' + error.message);
         });
@@ -94,6 +92,33 @@
           .catch(error => {
             alert('Erro ao enviar e-mail: ' + error.message);
           });
+      }
+    });
+
+    const db = firebase.firestore();
+    firebase.auth().onAuthStateChanged(async function(user) {
+      if (user) {
+        const userRef = db.collection('usuarios').doc(user.uid);
+        const doc = await userRef.get();
+        let userData;
+
+        if (!doc.exists) {
+          userData = {
+            uid: user.uid,
+            email: user.email,
+            nome: user.displayName || "",
+            role: user.email === "ecotankecomercial@gmail.com" ? "masteradmin" : "usuario"
+          };
+          await userRef.set(userData, { merge: true });
+        } else {
+          userData = doc.data();
+        }
+
+        sessionStorage.setItem("role", userData.role || "usuario");
+        sessionStorage.setItem("uid", userData.uid);
+        sessionStorage.setItem("email", userData.email);
+
+        window.location.href = 'dashboard/index.html';
       }
     });
 
