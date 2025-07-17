@@ -1,22 +1,21 @@
-import { auth } from './firebase-config.js';
-import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+// js/auth.js
 
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const errorMessage = document.getElementById('error-message');
-    const email = emailField.value;
-    const password = passwordField.value;
-
-    errorMessage.textContent = '';
-
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = 'dashboard.html';
-    } catch (error) {
-        errorMessage.textContent = 'Erro ao fazer login. Verifique suas credenciais.';
-        emailField.value = '';
-        passwordField.value = '';
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('login-form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => window.location.href = "index.html")
+        .catch(error => alert("Erro: " + error.message));
+    });
+  }
 });
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.href = 'login.html';
+  });
+}

@@ -1,14 +1,14 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+// js/firebase-config.js
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCqa0efoNr9z0cuYhqJzwHuxKYyu3f3_O0",
+  authDomain: "ecotanke-9200a.firebaseapp.com",
+  projectId: "ecotanke-9200a",
+  storageBucket: "ecotanke-9200a.appspot.com",
+  messagingSenderId: "180008277057",
+  appId: "1:180008277057:web:0ac1ead42bc5fc43daa2c0"
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | ECOTANKE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+  <script src="js/firebase-config.js"></script>
+</head>
+<body>
+  <h1>Painel ECOTANKE</h1>
+  <nav>
+    <a href="clientes.html">Clientes</a>
+    <a href="equipamentos.html">Equipamentos</a>
+    <a href="orcamentos.html">Orçamentos</a>
+    <a href="agendamentos.html">Agendamentos</a>
+    <a href="manutencao.html">Manutenções</a>
+    <a href="produtos.html">Produtos</a>
+    <a href="vendas.html">Vendas</a>
+    <a href="alugueis.html">Aluguéis</a>
+    <a href="relatorios.html">Relatórios</a>
+    <a href="admin.html" id="admin-link" style="display:none;">Admin</a>
+    <a href="#" onclick="logout()">Sair</a>
+  </nav>
+  <div id="dashboard-content">
+    <!-- Conteúdo dinâmico aqui -->
+  </div>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

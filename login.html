@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Ecotanke</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Login | ECOTANKE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+  <script src="js/firebase-config.js"></script>
 </head>
 <body>
-    <div class="login-container">
-        <img src="https://i.imgur.com/uqIgLrz.jpeg" alt="Logo Ecotanke" class="logo">
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit" id="login-button">Entrar</button>
-            <a href="#" id="forgot-password">Esqueci minha senha</a>
-            <p id="error-message" class="error-message"></p>
-        </form>
-    </div>
+  <h1>ECOTANKE - Login</h1>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="E-mail" required>
+    <input type="password" id="password" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <script src="js/auth.js"></script>
 </body>
 </html>
