@@ -1,6 +1,6 @@
 // js/firebase-config.js
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyCqa0efoNr9z0cuYhqJzwHuxKYyu3f3_O0",
   authDomain: "ecotanke-9200a.firebaseapp.com",
   projectId: "ecotanke-9200a",
@@ -9,6 +9,4 @@ const firebaseConfig = {
   appId: "1:180008277057:web:0ac1ead42bc5fc43daa2c0"
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+firebase.initializeApp(firebaseConfig);
