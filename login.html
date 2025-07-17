@@ -3,20 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <title>Login | ECOTANKE</title>
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.imgur.com/mjrlLJ0.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .login-box {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 100%);
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    @keyframes slideUp {
+      from { transform: translate(-50%, 100%); }
+      to { transform: translate(-50%, 0); }
+    }
+    .login-box h1 {
+      margin-top: 0;
+      text-align: center;
+      color: #148e24;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background-color: #148e24;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .login-box button:hover {
+      background-color: #0f6b1b;
+    }
+    .login-box a {
+      display: block;
+      margin-top: 8px;
+      text-align: right;
+      color: #148e24;
+      text-decoration: none;
+    }
+  </style>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
   <script src="js/firebase-config.js"></script>
 </head>
 <body>
-  <h1>ECOTANKE - Login</h1>
-  <form id="login-form">
-    <input type="email" id="email" placeholder="E-mail" required>
-    <input type="password" id="password" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-  </form>
-  <script src="js/auth.js"></script>
+  <div class="login-box">
+    <h1>ECOTANKE</h1>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="E-mail" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <a href="#" id="forgot-password">Esqueceu a senha?</a>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    const auth = firebase.auth();
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          alert('Erro ao entrar: ' + error.message);
+        });
+    });
+
+    document.getElementById('forgot-password').addEventListener('click', function(e) {
+      e.preventDefault();
+      const email = prompt('Digite seu e-mail para redefinir a senha:');
+      if (email) {
+        auth.sendPasswordResetEmail(email)
+          .then(() => {
+            alert('Link de redefinição enviado!');
+          })
+          .catch(error => {
+            alert('Erro ao enviar e-mail: ' + error.message);
+          });
+      }
+    });
+
+    // TODO: Implementar diferenciação de acesso por MASTERADMIN aqui
+  </script>
 </body>
 </html>
