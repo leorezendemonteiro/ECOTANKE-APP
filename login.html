@@ -1,9 +1,137 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>TESTE MÁXIMO - SE VOCÊ VÊ ISSO, ESTÁ TUDO CERTO NO DEPLOY</title>
-  </head>
-  <body>
-    <h1>TESTE MÁXIMO - SE VOCÊ VÊ ISSO, ESTÁ TUDO CERTO NO DEPLOY</h1>
-  </body>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | ECOTANKE</title>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url('https://i.imgur.com/mjrlLJ0.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .logo {
+      max-width: 340px;
+      width: 60vw;
+      margin-top: 28px;
+      margin-bottom: 22px;
+      filter: drop-shadow(0 2px 10px #3332);
+    }
+    .login-box {
+      width: 100%;
+      max-width: 410px;
+      background: rgba(255,255,255,0.96);
+      padding: 40px 26px 32px 26px;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.15em;
+      margin-bottom: 14px;
+      background: #f7f7f7;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 17px;
+      background: #148e24;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.15em;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .login-box button:hover {
+      background: #0d6b1a;
+    }
+    .login-box a {
+      color: #148e24;
+      font-size: 1em;
+      text-align: right;
+      display: block;
+      margin-bottom: 2px;
+      text-decoration: none;
+    }
+    @media (max-width: 600px) {
+      .logo {
+        max-width: 80vw;
+      }
+      .login-box {
+        max-width: 96vw;
+        padding: 22px 4vw 22px 4vw;
+      }
+      .login-box input,
+      .login-box button {
+        font-size: 1em;
+        padding: 12px;
+      }
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/firebase-config.js"></script>
+</head>
+<body>
+  <img src="assets/logo.png" alt="ECOTANKE" class="logo">
+  <div class="login-box">
+    <form id="login-form">
+      <input type="email" id="email" placeholder="E-mail" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <a href="#" id="forgot-password">Esqueceu a senha?</a>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+  <script>
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const auth = firebase.auth();
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      auth.signInWithEmailAndPassword(email, password)
+        .catch(error => {
+          alert('Erro ao entrar: ' + error.message);
+        });
+    });
+
+    document.getElementById('forgot-password').addEventListener('click', function(e) {
+      e.preventDefault();
+      const email = prompt('Digite seu e-mail para redefinir a senha:');
+      if (email) {
+        auth.sendPasswordResetEmail(email)
+          .then(() => {
+            alert('Link de redefinição enviado!');
+          })
+          .catch(error => {
+            alert('Erro ao enviar e-mail: ' + error.message);
+          });
+      }
+    });
+
+    // Redireciona se já estiver autenticado
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        window.location.href = "dashboard/index.html";
+      }
+    });
+  </script>
+</body>
 </html>
