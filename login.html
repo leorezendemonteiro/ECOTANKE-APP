@@ -4,25 +4,26 @@
   <meta charset="UTF-8">
   <title>Login | ECOTANKE</title>
   <style>
-    body {
+  body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background: url('https://i.imgur.com/mjrlLJ0.jpeg') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     font-family: Arial, sans-serif;
   }
   .login-box {
-    width: 97vw;
-    max-width: 1260px;
+    width: 77.6vw;
+    max-width: 1008px;
     background: rgba(255,255,255,0.96);
-    padding: 114px 60px 96px 60px;
+    padding: 91px 48px 77px 48px;
     border-radius: 18px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.16);
     margin-top: 0;
     margin-bottom: 3vh;
+    transform: translateY(-20%);
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -32,7 +33,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 1.3em;
+    font-size: 2.6em;
     margin-bottom: 16px;
   }
   .login-box button {
@@ -43,21 +44,27 @@
     border: none;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 2.4em;
     cursor: pointer;
     margin-top: 10px;
   }
+  .login-box a {
+    font-size: 2em;
+  }
   @media (max-width: 600px) {
     .login-box {
-      width: 99vw;
-      max-width: 99vw;
-      padding: 54px 6vw 54px 6vw;
+      width: 79.2vw;
+      max-width: 79.2vw;
+      padding: 43px 4.8vw 43px 4.8vw;
       margin-top: 0;
     }
     .login-box input,
     .login-box button {
-      font-size: 1.15em;
+      font-size: 2.3em;
       padding: 15px;
+    }
+    .login-box a {
+      font-size: 2em;
     }
   }
   </style>
